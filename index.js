@@ -1,42 +1,39 @@
 var gulp = require('gulp'),
-    gulpIf = require('gulp-if'),
-    sourcemap = require('gulp-sourcemaps'),
-	htmlmin = require('gulp-htmlmin'),
-	templateCache = require('gulp-angular-templatecache'),
-	extend = require('extend'),
+    extend = require('extend'),
+    htmlmin = require('gulp-htmlmin'),
+    templateCache = require('gulp-angular-templatecache'),
     elixir = require('laravel-elixir'),
-    utilities = require('laravel-elixir/ingredients/commands/Utilities'),
-	Notification = require('laravel-elixir/ingredients/commands/Notification');
+    gulpIf = elixir.Plugins.if,
+    sourcemap = elixir.Plugins.sourcemaps,
+    config = elixir.config;
 
-elixir.extend('ngTemplateCache', function(src, outputDir, baseDir, options) {
+elixir.extend('ngTemplateCache', function(src, output, baseDir, options) {
 
-    var config = elixir.config,
-	    baseDir = baseDir || config.assetsDir + 'templates',
-	    filePattern = '/**/*.html';
+    options = extend(true, {
+        templateCache: {
+            standalone: true
+        },
+        htmlmin: {
+            collapseWhitespace: true,
+            removeComments: true
+        }
+    }, options);
 
-	options = extend(true, {
-		templateCache: {
-			standalone: true
-		},
-		htmlmin: {
-			collapseWhitespace: true,
-			removeComments: true
-		}
-	}, options);
+    var sources = (baseDir || config.assetsPath + '/templates') + (src || '/**/*.html'),
+        paths = new elixir.GulpPaths()
+            .src(sources)
+            .output(output || config.get('public.js.outputFolder'));
 
-    src = utilities.buildGulpSrc(src, baseDir, filePattern);
+    new elixir.Task('ngTemplateCache', function() {
 
-    gulp.task('ngTemplateCache', function() {
-        return gulp.src(src)
-	        .pipe(gulpIf(config.sourcemaps, sourcemap.init()))
-	        .pipe(gulpIf(config.production, htmlmin(options.htmlmin)))
-	        .pipe(templateCache(options.templateCache))
-	        .pipe(gulpIf(config.sourcemaps, sourcemap.write('.')))
-            .pipe(gulp.dest(outputDir || config.jsOutput))
-	        .pipe(new Notification().message('Angular templatecache generated.'));
-    });
+        return gulp.src(paths.src.path)
+            .pipe(gulpIf(config.sourcemaps, sourcemap.init()))
+            .pipe(gulpIf(config.production, htmlmin(options.htmlmin)))
+            .pipe(templateCache(options.templateCache))
+            .pipe(gulpIf(config.sourcemaps, sourcemap.write('.')))
+            .pipe(gulp.dest(paths.output.baseDir))
+            .pipe(new elixir.Notification('Angular templatecache generated.'));
 
-    this.registerWatcher('ngTemplateCache', baseDir + filePattern);
+    }).watch(sources);
 
-    return this.queueTask('ngTemplateCache');
 });

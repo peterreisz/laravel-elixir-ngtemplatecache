@@ -93,6 +93,11 @@ This will require a file `BASEDIR/foo/bar.html`, so you don't have to put the `B
 
 ## Changelog
 
+__0.2.0__
+- Upgrade to laravel-elixir 3.0
+- Upgrade dependencies
+
+
 __0.1.0__
 - Initial release
 
