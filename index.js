@@ -33,6 +33,6 @@ elixir.extend('ngTemplateCache', function(src, output, options) {
             .pipe(gulp.dest(paths.output.baseDir))
             .pipe(new elixir.Notification('Angular templatecache generated.'));
 
-    }).watch(sources);
+    }).watch(src);
 
 });
