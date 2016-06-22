@@ -14,7 +14,9 @@
     "gulp"
   ],
   "author": "Peter Reisz <peter@reisz.tk>",
-  "contributors": [],
+  "contributors": [
+    "Rafael César Neves <rneves@rocketmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "gulp-angular-templatecache": "^1.7.0",
@@ -24,10 +26,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/peterreisz/laravel-elixir-ngtemplatecache"
+    "url": "https://github.com/rafaelcneves/laravel-elixir-ngtemplatecache"
   },
   "bugs": {
-    "url": "https://github.com/peterreisz/laravel-elixir-ngtemplatecache/issues"
+    "url": "https://github.com/rafaelcneves/laravel-elixir-ngtemplatecache/issues"
   },
-  "homepage": "https://github.com/peterreisz/laravel-elixir-ngtemplatecache"
+  "homepage": "https://github.com/rafaelcneves/laravel-elixir-ngtemplatecache"
 }
