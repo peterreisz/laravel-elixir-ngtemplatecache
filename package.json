@@ -1,6 +1,6 @@
 {
   "name": "laravel-elixir-ngtemplatecache",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Laravel Elixir extension for generating AngularJS an templateCache module",
   "main": "index.js",
   "scripts": {
@@ -26,10 +26,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/rafaelcneves/laravel-elixir-ngtemplatecache"
+    "url": "https://github.com/peterreisz/laravel-elixir-ngtemplatecache"
   },
   "bugs": {
-    "url": "https://github.com/rafaelcneves/laravel-elixir-ngtemplatecache/issues"
+    "url": "https://github.com/peterreisz/laravel-elixir-ngtemplatecache/issues"
   },
-  "homepage": "https://github.com/rafaelcneves/laravel-elixir-ngtemplatecache"
+  "homepage": "https://github.com/peterreisz/laravel-elixir-ngtemplatecache"
 }

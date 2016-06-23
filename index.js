@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     sourcemap = elixir.Plugins.sourcemaps,
     config = elixir.config;
 
-elixir.extend('ngTemplateCache', function(src, output, options) {
+elixir.extend('ngTemplateCache', function(src, output, basedir, options) {
 
     options = extend(true, {
         templateCache: {
@@ -20,8 +20,8 @@ elixir.extend('ngTemplateCache', function(src, output, options) {
     }, options);
 
     var paths = new elixir.GulpPaths()
-            .src(src)
-            .output(output || config.get('public.js.outputFolder'));
+        .src(src || '**/*.html', basedir || config.assetsPath + '/templates/')
+        .output(output || config.get('public.js.outputFolder'));
 
     new elixir.Task('ngTemplateCache', function() {
 
@@ -33,6 +33,6 @@ elixir.extend('ngTemplateCache', function(src, output, options) {
             .pipe(gulp.dest(paths.output.baseDir))
             .pipe(new elixir.Notification('Angular templatecache generated.'));
 
-    }).watch(src);
+    }).watch(paths.src.path);
 
 });
