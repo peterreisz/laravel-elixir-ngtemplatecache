@@ -20,7 +20,7 @@ elixir.extend('ngTemplateCache', function(src, output, basedir, options) {
     }, options);
 
     var paths = new elixir.GulpPaths()
-        .src(src || '**/*.html', basedir || config.assetsPath + '/templates/')
+        .src(src || '/**/*.html', basedir || config.assetsPath + '/templates')
         .output(output || config.get('public.js.outputFolder'));
 
     new elixir.Task('ngTemplateCache', function() {
