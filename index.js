@@ -10,6 +10,9 @@ var gulp = require('gulp'),
 elixir.extend('ngTemplateCache', function(src, output, basedir, options) {
 
     options = extend(true, {
+        enabled: {
+            htmlmin: config.production
+        },
         templateCache: {
             standalone: true
         },
@@ -27,7 +30,7 @@ elixir.extend('ngTemplateCache', function(src, output, basedir, options) {
 
         return gulp.src(paths.src.path)
             .pipe(gulpIf(config.sourcemaps, sourcemap.init()))
-            .pipe(gulpIf(config.production, htmlmin(options.htmlmin)))
+            .pipe(gulpIf(options.enabled.hmtlmin, htmlmin(options.htmlmin)))
             .pipe(templateCache(options.templateCache))
             .pipe(gulpIf(config.sourcemaps, sourcemap.write('.')))
             .pipe(gulp.dest(paths.output.baseDir))
