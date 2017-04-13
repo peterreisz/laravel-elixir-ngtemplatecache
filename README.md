@@ -62,13 +62,16 @@ require('laravel-elixir-ngtemplatecache');
 
 elixir(function(mix) {
     mix.ngTemplateCache('/**/*.html', 'public/js', 'resources/assets/templates', {
+        enabled: {
+            htmlmin: true // in production, false in development mode
+        },
         templateCache: {
-			standalone: true
-		},
-		htmlmin: {
-			collapseWhitespace: true,
-			removeComments: true
-		}
+            standalone: true
+        },
+        htmlmin: {
+            collapseWhitespace: true,
+            removeComments: true
+        }
     });
 });
 ```
@@ -92,6 +95,9 @@ Use the template:
 This will require a file `BASEDIR/foo/bar.html`, so you don't have to put the `BASEDIR` inside the url.
 
 ## Changelog
+
+__0.3.1__
+- Added config option to toggle html-min usage
 
 __0.3.0__
 - Refactor path handling to get the ability to ignore files with gulp/glob patterns

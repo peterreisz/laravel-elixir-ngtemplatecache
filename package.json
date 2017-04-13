@@ -1,6 +1,6 @@
 {
   "name": "laravel-elixir-ngtemplatecache",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Laravel Elixir extension for generating AngularJS an templateCache module",
   "main": "index.js",
   "scripts": {
